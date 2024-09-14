@@ -1,5 +1,4 @@
 import discord
-from discord import app_commands
 import os
 import datetime
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -9,7 +8,6 @@ intents.message_content = True
 intents.members = True
 
 client = discord.Client(intents=intents)
-tree = app_commands.CommandTree(client)
 
 async def analyze():
     joke_channel = client.get_channel(891948673095852052)
@@ -70,7 +68,6 @@ async def analyze():
 @client.event
 async def on_ready():
     print('Logged in as New Chitose Bot')
-    await tree.sync()
     jst = datetime.timezone(datetime.timedelta(hours=9))
     scheduler = AsyncIOScheduler()
     scheduler.configure(timezone=jst)
